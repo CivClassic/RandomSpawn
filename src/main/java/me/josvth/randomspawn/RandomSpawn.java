@@ -299,7 +299,8 @@ public class RandomSpawn extends JavaPlugin {
 			// check if a player must be nearby and look for a player if so
 			if (spawnpoint.getBoolean("nearby")) {
 				for (Player player : playersOnline) {
-					if (location.distance(player.getLocation()) < spawnpoint.getDouble("checkradius",
+					Location locationWithPlayerY = new Location(world, location.getX(), player.getLocation().getY(), location.getZ());
+					if (locationWithPlayerY.distance(player.getLocation()) < spawnpoint.getDouble("checkradius",
 							spawnpoint.getDouble("radius", 0d))) {
 						skip = false;
 						break;
